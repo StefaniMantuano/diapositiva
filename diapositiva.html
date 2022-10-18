@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Documento</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width-device-width, initial-scale-1.0">
+        <link rel="stylesheet" >
+        
+    </head>
+
+    <body>
+        <h1 id="encabezado">¿Qué es el DOM?</h1>
+        <div id="concepto">
+            El modelo de objeto de documento (DOM) es una interfaz de programación para los documentos HTML y XML. 
+            Facilita una representación estructurada del documento y define de qué manera los programas pueden acceder, al fin de modificar, tanto su estructura, estilo y contenido. 
+            El DOM da una representación del documento como un grupo de nodos y objetos estructurados que tienen propiedades y métodos. 
+            Esencialmente, conecta las páginas web a scripts o lenguajes de programación. 
+        </div>
+
+        <p name ="caracteristicas">
+            Una página web es un documento. Éste documento puede exhibirse en la ventana de un navegador o también como código fuente HTML. 
+            Pero, en los dos casos, es el mismo documento. El modelo de objeto de documento (DOM) proporciona otras formas de presentar, guardar y manipular este mismo documento. 
+            El DOM es una representación completamente orientada al objeto de la página web y puede ser modificado con un lenguaje de script como JavaScript.
+        </p>
+
+        <div id="datos"></div>
+
+        <form>
+            Nombre: <input type="text" id="nombre"/>
+            <br> 
+            Te gusta programar?
+            SI <input type="radio" id="rsi" name="programar" value="SI"/> 
+            NO <input type="radio" id="rno" name="programar" value="NO"/>
+            <br> 
+            Marcar si eres estudiante: <input type="checkbox" id="estudiante" value="SI"><br>
+            <button type="button" onclick="valida()">Validar</button>
+            <button type="button" onclick="limpiar()">Limpiar</button>
+        </form>
+
+        <script>
+            let titulo= document.getElementById("encabezado");
+            console.log(titulo.innerHTML);
+
+            let concepto = document.getElementById("concepto");
+            concepto.style.color = "red";
+            console.log(concepto.innerHTML);
+
+            let caracteristicas = document.getElementsByTagName("p");
+            caracteristicas[0].style.textAlign = "right";
+            console.log(caracteristicas[0].innerHTML);
+
+
+            let nuevoParrafo = document.createElement("p");
+            let textParrafo = document.createTextNode("Aqui va el texto del parrafo");
+            let datoNuevo = document.getElementById("datos");
+            datoNuevo.appendChild(nuevoParrafo);
+            nuevoParrafo.appendChild(textParrafo);
+
+            function valida(){
+                let nombre = document.getElementById("nombre").value;
+                let radios = document.getElementsByName("programar");
+                let estudia = document.getElementById("estudiante");
+                let valorRadio = "";
+                
+
+
+            for(let a=0; a<radios.lengt; a++){
+                if (radios[a].checked){
+                    valorRadio = radios[a].value;
+                }
+            }
+            
+
+            if (estudia.checked){
+                estudia ="SI"; 
+            }
+
+            else{
+                estudia="NO";
+                }
+           
+ console.log("Nombre: "+ nombre +"\n Sabe programar: "+ valorRadio +"\nEs estudiante: "+ estudia );
+            
+
+            }
+
+             function limpiar(){
+                document.getElementById("nombre").value ="";
+                let radios = document.getElementsByName("programar");
+                
+            
+
+            for(let a=0; a<radios.lengt; a++){
+                if (radios[a].checked){
+                   radios[a].checked = false;
+                }
+            }
+
+          
+          let estudia = document.getElementById("estudiante");
+          estudia.checked = false;
+
+         }
+        
+
+      </script>
+            
+        
+    </body>
+    </html>
